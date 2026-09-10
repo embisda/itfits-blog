@@ -5,16 +5,30 @@ description: Researches and drafts itfits brand encyclopedia pages, then publish
 
 # itfits blog publisher
 
-Draft one brand at a time. Save as `published: false`. Wait for the user to approve before flipping to published.
+This file and `automation/SKILL.md` must stay identical. Cloud automations should load **`automation/SKILL.md`** (committed in the git repo). Local Cursor can use this path.
+
+Draft **one brand per run**. Save as `published: false`. Never set `published: true`. Wait for the user to approve before publishing.
+
+Do not open a pull request unless you must edit skill files.
+
+## Workspace
+
+Canonical local folder: `/Users/embisda/Documents/_Project/Web/itfits.vakhromeev.com`. Site files are in `www/`. If this checkout has no skill file, look for `automation/SKILL.md` then `.cursor/skills/itfits-blog-publisher/SKILL.md`. Do not create a new project. Do not use a Downloads copy.
 
 ## Cadence
 
 - One brand every 3 days.
-- After the queue is done, ask the user for the next brands.
+- If API `next` is `null`, ask the user for the next brands and **stop**.
 
-## Queue
+## Source of truth
 
-Base order:
+Do **not** pick the brand from the table below and do **not** keep a local “done” list.
+
+- **Already written** (draft or published) = API `queue[].status` not `queued`, or any pages for that slug.
+- **What to write now** = API `next` only.
+- Queue order in PHP: `blogBrandQueue()` in `www/includes/blog.php`. Keep the table below in sync when you change PHP.
+
+Base order (documentation only):
 
 | Brand | slug |
 |---|---|
@@ -29,16 +43,27 @@ Base order:
 | Levi's | `levis` |
 | Nike | `nike` |
 
-Before writing the next brand:
+## Run protocol (mandatory)
 
-1. `GET https://itfits.vakhromeev.com/api/blog.php?token=` — with token the JSON includes `brands` (blog, including drafts) and `catalog` (`name`, `logo_url` from table `brands`). Or `GET …/api/blog.php?catalog=1&token=`.
-2. Skip encyclopedia brands that already have pages (draft or published).
-3. Map catalog names to **parent encyclopedia brands** (below). Append any parent not yet in the queue and not yet written.
-4. Pick the first unwritten brand in that merged list.
+Token: environment `BLOG_API_TOKEN`, or `blog_api_token` in `www/config/config.php`. Never print it. Call `https://itfits.vakhromeev.com/api/blog.php?token=` (the host often strips `Authorization`). Do not use MySQL.
+
+Treat timeout, 5xx, 401, empty body, or non-JSON as **failure**. Failure ≠ “brand has no pages”.
+
+1. `GET https://itfits.vakhromeev.com/api/blog.php?next=1&token=`
+2. On failure: wait 45s, retry up to 3 times, then **stop**. Do not guess the next brand from the table or from memory.
+3. If `next` is `null`: tell the user the queue is empty and **stop**.
+4. `GET …/api/blog.php?brand={next.slug}&token=`
+5. If that call fails: **stop**. If `pages` is non-empty: **stop** (do not POST; the server would return 409).
+6. Research and draft that one brand (plus `next.extra_page` if present).
+7. Immediately before POST, repeat step 4. If it fails or `pages` is non-empty: **stop**.
+8. `POST` with `published: false`. Never send `overwrite: true`.
+9. Summarize brand + slugs saved. If POST returns 409, report it and **stop**.
+
+Wait at least 45s between API calls if the host rate-limits. Do not walk the queue with per-brand GETs after a timeout.
 
 ## Subbrands in the catalog
 
-Wardrobe names are not always the house name. Write the **parent**, plus one extra page about the line.
+Wardrobe names are not always the house name. Write the **parent**, plus one extra page about the line. API `next.extra_page` is `{slug, title}` when the catalog has a line.
 
 | If admin catalog has | Write hub as | Extra page |
 |---|---|---|
@@ -90,9 +115,9 @@ Extra page: history of that line, how it relates to the house, typical products.
 
 ## Publish
 
-1. Token from `www/config/config.php` — never copy it into chat or this skill.
-2. `POST https://itfits.vakhromeev.com/api/blog.php` (`Authorization: Bearer` or `?token=` if the host strips the header).
+1. Token from env or `www/config/config.php` — never copy it into chat or this skill.
+2. `POST https://itfits.vakhromeev.com/api/blog.php?token=`
 3. `published: false`. Hub slug `index`.
-4. After approval, set `published: true`.
+4. After approval, set `published: true` with PUT/PATCH (not a new POST of the whole brand).
 
 See [reference.md](reference.md).
