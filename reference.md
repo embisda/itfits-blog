@@ -102,7 +102,8 @@ Human queue and drafts: `/admin/blog.php`.
 
 ## Research checklist
 
-- Confirm each claim against a named source before writing.
+- Confirm each claim against a named source before writing. Prefer the encyclopedias in SKILL.md (Wikipedia, Britannica, Encyclopedia.com, Citizendium, Scholarpedia, Infoplease, Rubricon, bre.ruwiki.ru, HubPages) plus official sites. English sources are fine: translate into Russian.
+- Images from those encyclopedias only when reuse is allowed; otherwise Commons / CC / museum OA.
 - Stores: only shops/sites you can verify for Moscow, St. Petersburg, Russia online. If none, skip `stores`. Closed shops: status only, no political explanation.
 - Culture: music/musicians, subculture, exhibition, charity — omit unsourced names. Skip the page if empty.
 - Ambassadors: people independently associated with the house or historically its face; not paid campaign-only models. Skip the page if unsourced.

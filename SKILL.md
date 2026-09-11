@@ -90,7 +90,17 @@ On the hub, link to other sections in ordinary encyclopedia language («Подр
 ## Voice, sources, forbidden
 
 - Russian, **Вы**, encyclopedic but not stiff. Never invent; omit empty sections.
-- Sources: Wikipedia, official sites, marketplaces, books.
+- If a source is in English (or another language), use it and write the article in Russian. Do not leave English body copy.
+- Sources to search (in addition to official sites, marketplaces, and books):
+  - https://www.wikipedia.org/
+  - https://bre.ruwiki.ru/
+  - http://www.scholarpedia.org/
+  - https://www.infoplease.com/
+  - https://www.rubricon.com/
+  - https://www.britannica.com/
+  - https://www.encyclopedia.com/
+  - https://discover.hubpages.com/
+  - https://citizendium.org/
 - No `<script>`, JSON-LD, OG, or breadcrumbs in `content`.
 - Do not mention the Russia–Ukraine war, invasion, «СВО», sanctions, or political statements about that conflict. Closed shops: status only.
 - Do not write about technical aspects of creating the articles or how the blog is built. Forbidden examples (and anything like them): «актуальный логотип на сайте itfits берётся из админского каталога», «картинку знака в HTML этой страницы мы не ставим — шаблон уже показывает его сверху», «эта страница хранится как slug», «в API поле published».
@@ -98,11 +108,12 @@ On the hub, link to other sections in ordinary encyclopedia language («Подр
 ## Images
 
 - Add a `<figure>` **only** when the photo is unique to that page and you have a free stable URL. If nothing fits, **no image**.
-- Search order for photos (keep going until a **reusable** license is found: CC BY/SA, public domain, official press still with clear reuse, or Wikimedia):
+- Search order for photos (keep going until a **reusable** license is found: CC BY/SA, public domain, official press still with clear reuse, Wikimedia, or the encyclopedia source itself allows reuse of that file):
   1. Wikimedia Commons API (`list=search` namespace 6) and Wikipedia infobox / `File:` on EN/IT/RU pages.
-  2. Openverse / Flickr Commons (`license=cc` or `pd`), Europeana, Internet Archive images.
-  3. Official brand heritage / about pages, Massimo Osti Archive, company press kits — **only** if the page states reuse; otherwise skip (portraits of living/recent designers are usually © archive).
-  4. National portraits / museum collections (NPG, Rijksmuseum, MET Open Access).
+  2. The encyclopedias listed above (Wikipedia, Britannica, Encyclopedia.com, Citizendium, Scholarpedia, Infoplease, Rubricon, bre.ruwiki.ru, HubPages) — use their images **only** when the page or file states reuse is allowed. Do not hotlink a copyrighted Britannica/Encyclopedia.com still just because it illustrates the topic.
+  3. Openverse / Flickr Commons (`license=cc` or `pd`), Europeana, Internet Archive images.
+  4. Official brand heritage / about pages, Massimo Osti Archive, company press kits — **only** if the page states reuse; otherwise skip (portraits of living/recent designers are usually © archive).
+  5. National portraits / museum collections (NPG, Rijksmuseum, MET Open Access).
 - Do not hotlink random magazine scans, Instagram, or WWD “courtesy of” shots.
 - Do not reuse the catalog logo or the same photo on several pages.
 - Hub and logo pages: do not duplicate the brand mark as an `<img>` in content.
