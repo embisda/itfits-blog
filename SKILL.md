@@ -7,7 +7,9 @@ description: Researches and drafts itfits brand encyclopedia pages, then publish
 
 This file and `automation/SKILL.md` must stay identical. Cloud automations should load **`automation/SKILL.md`** (committed in the git repo). Local Cursor can use this path.
 
-Draft **one brand per run**, or **one missing section** for a brand that already exists. Save as `published: false`. Never set `published: true`. Wait for the user to approve before publishing.
+Draft **one new brand per run** after backfill is empty. When the API `backfill` list is not empty (new section added to the skill, e.g. ambassadors), **this run must write every missing page for every listed brand**, then stop. Do not write only one brand’s ambassadors and wait for the next cron. Do not skip backfill to start a new brand. Once `backfill` is `[]`, never re-check old brands unless a new slug is added to `blogBackfillPageSlugs()`.
+
+Save as `published: false`. Never set `published: true`. Wait for the user to approve before publishing.
 
 Do not open a pull request unless you must edit skill files.
 
@@ -17,16 +19,16 @@ Canonical local folder: `/Users/embisda/Documents/_Project/Web/itfits.vakhromeev
 
 ## Cadence
 
-- One brand every 3 days when writing a full encyclopedia.
-- One missing section per run when `next.missing_pages` is set.
-- If API `next` is `null`, the admin catalog has no brands left to write. Stop.
+- After a skill/automation change that adds a page type: one run fills **all** existing brands’ missing pages (`backfill`).
+- After that, one **new** catalog brand per run (full encyclopedia, including the new page types).
+- If API `next` is `null` and `backfill` is `[]`, the catalog has nothing left. Stop.
 
 ## Source of truth
 
 Do **not** keep a hardcoded brand list in this skill or in the automation prompt.
 
 - What exists in the wardrobe admin catalog = `catalog` from the API (`GET` with token), same brands as https://itfits.vakhromeev.com/admin/brands.php
-- What to write now = API `next` only (`GET ?next=1&token=`).
+- What to write now = API `backfill` first (all items), else API `next` (one new brand).
 - Map catalog line names to a parent house (Calvin Klein Jeans → Calvin Klein + extra page). Do not invent a second house.
 
 ## New section on existing brands
@@ -34,9 +36,9 @@ Do **not** keep a hardcoded brand list in this skill or in the automation prompt
 Whenever a new page type is added to the encyclopedia (for example `ambassadors`):
 
 1. Add it to `blogSectionLabels()` / this skill.
-2. Add the slug to `blogBackfillPageSlugs()` in `www/includes/blog.php` so `next.missing_pages` lists brands that already have articles but lack the new page.
-3. Prefer backfill (`missing_pages`) over writing a brand that has zero pages.
-4. `PUT` only the missing page(s). Do not POST a full brand (that 409s).
+2. Add the slug to `blogBackfillPageSlugs()` in `www/includes/blog.php` so API `backfill` lists every existing brand that lacks the page.
+3. The **next automation run** writes all `backfill` pages in that single run (`PUT`, `published: false`). Then later runs write new brands.
+4. Do not POST a full brand for backfill (that 409s).
 
 ## Run protocol (mandatory)
 
@@ -46,14 +48,14 @@ Treat timeout, 5xx, 401, empty body, or non-JSON as **failure**. Failure ≠ “
 
 1. `GET https://itfits.vakhromeev.com/api/blog.php?next=1&token=`
 2. On failure: wait 45s, retry up to 3 times, then **stop**. Do not guess the next brand.
-3. If `next` is `null`: tell the user the catalog queue is empty and **stop**.
-4. `GET …/api/blog.php?brand={next.slug}&token=`
-5. If that call fails: **stop**.
-6. If `next.missing_pages` is a non-empty list: those slugs must be absent from `pages`. Research and `PUT` each missing page with `published: false`. Then summarize and **stop**.
-7. If `pages` is non-empty and `missing_pages` is empty: **stop** (do not POST).
-8. If `pages` is empty: research and draft that one brand (plus `next.extra_page` if present).
-9. Immediately before POST, repeat step 4. If it fails or `pages` is non-empty: **stop**.
-10. `POST` with `published: false`. Never send `overwrite: true`.
+3. If `backfill` is a non-empty array: for **each** item, `GET ?brand={slug}&token=`, then `PUT` every slug in `missing_pages` with `published: false` and a proper `brand` display name (never the slug). When all items are done, summarize and **stop**. Do not write a new brand in the same run.
+4. If `backfill` is `[]` and `next` is `null`: tell the user the catalog queue is empty and **stop**.
+5. `GET …/api/blog.php?brand={next.slug}&token=`
+6. If that call fails: **stop**.
+7. If `pages` is non-empty: **stop** (do not POST).
+8. If `pages` is empty: research and draft that one brand (plus `next.extra_page` if present), including ambassadors when sources exist.
+9. Immediately before POST, repeat the brand GET. If it fails or `pages` is non-empty: **stop**.
+10. `POST` with `published: false` and `brand` as the human name from the catalog (e.g. `Ben Sherman`, never `bensherman`). Never send `overwrite: true`.
 11. Summarize brand + slugs saved. If POST returns 409, report it and **stop**.
 
 Wait at least 45s between API calls if the host rate-limits.
@@ -103,7 +105,7 @@ On the hub, link to other sections in ordinary encyclopedia language («Подр
   - https://citizendium.org/
 - No `<script>`, JSON-LD, OG, or breadcrumbs in `content`.
 - Do not mention the Russia–Ukraine war, invasion, «СВО», sanctions, or political statements about that conflict. Closed shops: status only.
-- Do not write about technical aspects of creating the articles or how the blog is built. Forbidden examples (and anything like them): «актуальный логотип на сайте itfits берётся из админского каталога», «картинку знака в HTML этой страницы мы не ставим — шаблон уже показывает его сверху», «эта страница хранится как slug», «в API поле published».
+- Do not write about technical aspects of creating the articles or how the blog is built. Readers must never be told how the site “подставляет” a logo, where files live, what a template does, or what the admin catalog is. Forbidden examples (and anything like them): «актуальный логотип на сайте itfits берётся из админского каталога», «картинку знака в HTML этой страницы мы не ставим — шаблон уже показывает его сверху», «картинку логотипа в этот текст мы не ставим: на сайте её подставляет каталог», «эта страница хранится как slug», «в API поле published». If you have nothing encyclopedic to say about the mark, describe its history and meaning only.
 
 ## Images
 

@@ -21,34 +21,26 @@ GET /api/blog.php?next=1&token=
 ```json
 {
   "ok": true,
-  "next": {
-    "name": "Fred Perry",
-    "slug": "fredperry",
-    "extra_page": null,
-    "missing_pages": ["ambassadors"]
-  },
-  "queue": [
+  "next": { "name": "Lacoste", "slug": "lacoste", "extra_page": null, "missing_pages": [] },
+  "backfill": [
     {
-      "name": "Pretty Green",
-      "slug": "prettygreen",
-      "status": "draft",
-      "pages_count": 6,
-      "draft_count": 6,
-      "published_count": 0,
-      "extra_page": null,
-      "missing_pages": ["ambassadors"]
+      "name": "Stone Island",
+      "slug": "stoneisland",
+      "missing_pages": ["ambassadors"],
+      "extra_page": null
     }
-  ]
+  ],
+  "queue": []
 }
 ```
 
-`next` is `null` when every catalog brand already has pages and no backfill slugs are missing. `status` is `queued` | `draft` | `published` | `mixed`.
+`next` is the next catalog brand with **zero** pages. `backfill` is every existing encyclopedia brand that still lacks a newly added section (currently `ambassadors`). `status` is `queued` | `draft` | `published` | `mixed`.
 
-Authenticated list (`GET /api/blog.php?token=`) also includes `brands`, `catalog` (same rows as `/admin/brands.php`, including `origin_country`), `next`, and `queue`. There is no hardcoded brand list: `next` is computed from the admin catalog.
+If `backfill` is not empty, `PUT` **all** those missing pages in one run, then stop. Do not POST a full brand. Do not write `next` in the same run.
 
-If `next.missing_pages` is non-empty, the brand already exists. `PUT` only those slugs (`?brand={slug}&page=ambassadors`). Do not POST the whole brand.
+After `backfill` is `[]`, write `next` as a full new brand. `next` is `null` when the catalog has no unwritten brands.
 
-`next` prefers brands that lack a newly added section (`missing_pages`, currently `ambassadors`) over brands with zero pages.
+Always send `brand` as the human catalog name (`Ben Sherman`), never the slug (`bensherman`).
 
 Confirm emptiness for a **new** brand: `GET /api/blog.php?brand=…&token=` → `pages` must be `[]` before POST.
 
