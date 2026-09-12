@@ -1,9 +1,11 @@
 # itfits blog API and research
 
+Companion to `SKILL.md`. Writing rules live there. This file is the API contract and a short research checklist.
+
 ## Auth
 
 ```
-GET/POST/PUT/PATCH/DELETE https://itfits.vakhromeev.com/api/blog.php?token=
+GET/POST/PUT/PATCH/DELETE https://www.itfits.vakhromeev.com/api/blog.php?token=
 ```
 
 Prefer `?token=` (the host often strips `Authorization: Bearer`). Token is `BLOG_API_TOKEN` or `blog_api_token` in `www/config/config.php`. Never print it.
@@ -22,23 +24,14 @@ GET /api/blog.php?next=1&token=
 {
   "ok": true,
   "next": { "name": "Lacoste", "slug": "lacoste", "extra_page": null, "missing_pages": [] },
-  "backfill": [
-    {
-      "name": "Stone Island",
-      "slug": "stoneisland",
-      "missing_pages": ["ambassadors"],
-      "extra_page": null
-    }
-  ],
+  "backfill": [],
   "queue": []
 }
 ```
 
-`next` is the next catalog brand with **zero** pages. `backfill` is every existing encyclopedia brand that still lacks a newly added section (currently `ambassadors`). `status` is `queued` | `draft` | `published` | `mixed`.
+`next` is the next catalog brand with **zero** pages. `next` is `null` when the catalog has no unwritten brands.
 
-If `backfill` is not empty, `PUT` **all** those missing pages in one run, then stop. Do not POST a full brand. Do not write `next` in the same run.
-
-After `backfill` is `[]`, write `next` as a full new brand. `next` is `null` when the catalog has no unwritten brands.
+**Ignore `backfill`.** Automation never completes missing sections on brands that already have pages. Rewrite only when the user asks (see SKILL.md «How the user asks for a rewrite»).
 
 Always send `brand` as the human catalog name (`Ben Sherman`), never the slug (`bensherman`).
 
@@ -48,7 +41,7 @@ Timeout / 401 / 5xx / non-JSON: stop. Do not treat that as an empty encyclopedia
 
 ## POST body
 
-New brand only. If the brand already exists, API returns **409** unless `"overwrite": true` (automation must never send overwrite).
+New brand only. If the brand already exists, API returns **409** unless `"overwrite": true` (never send overwrite).
 
 ```json
 {
@@ -59,32 +52,35 @@ New brand only. If the brand already exists, API returns **409** unless `"overwr
     {
       "slug": "index",
       "title": "Lacoste",
-      "excerpt": "Одно предложение для оглавления.",
+      "excerpt": "Чем знамениты и чем занимаются сейчас — одно предложение.",
       "seo_title": "Lacoste — бренд и крокодил | itfits",
       "seo_description": "140–160 символов про эту страницу.",
       "og_image": "https://…",
       "related_brands": ["fredperry", "ralphlauren", "calvinklein"],
       "faq": [
-        {"question": "Вопрос как в тексте", "answer": "Ответ как в тексте"}
+        {"question": "Основатель", "answer": "Рене Лакост основал марку после теннисной карьеры."},
+        {"question": "История", "answer": "Дом вырос из рубашки-поло и знака крокодила."}
       ],
-      "content": "<p>2–4 предложения. <a href=\"/blog/lacoste/history\">Подробнее об истории</a>.</p>"
+      "content": "<p>Чем знамениты и чем занимаются сейчас. <a href=\"/blog/lacoste/history\">Подробнее об истории</a>.</p>"
     },
     {
       "slug": "founder",
       "title": "Основатель Lacoste",
-      "excerpt": "Короткая подпись для содержания на хабе.",
+      "excerpt": "Одно предложение для Содержание на хабе.",
       "seo_title": "…",
       "seo_description": "…",
       "faq": [],
-      "content": "<p>…</p>"
+      "content": "<h2>Рене Лакост</h2><p>…</p><h2>Источники</h2><ul><li><a href=\"https://en.wikipedia.org/wiki/René_Lacoste\">René Lacoste — Wikipedia</a></li></ul>"
     }
   ]
 }
 ```
 
+Hub `faq` = Содержание: `question` is the section title, `answer` is the child `excerpt`. Child pages omit hub-style FAQ unless they have their own 3–6 items from the body.
+
 `related_brands` only on `index`. Child pages omit it.
 
-Update one page: `PUT /api/blog.php?brand=lacoste&page=history&token=`.
+Update one page (rewrite): `PUT /api/blog.php?brand=lacoste&page=history&token=`.
 
 Delete: `DELETE /api/blog.php?brand=lacoste&page=founder&token=` or whole brand without `page`.
 
@@ -94,19 +90,20 @@ Human queue and drafts: `/admin/blog.php`.
 
 ## Research checklist
 
-- Confirm each claim against a named source before writing. Prefer the encyclopedias in SKILL.md (Wikipedia, Britannica, Encyclopedia.com, Citizendium, Scholarpedia, Infoplease, Rubricon, bre.ruwiki.ru, HubPages) plus official sites. English sources are fine: translate into Russian.
-- Images from those encyclopedias only when reuse is allowed; otherwise Commons / CC / museum OA.
-- Stores: only shops/sites you can verify for Moscow, St. Petersburg, Russia online. If none, skip `stores`. Closed shops: status only, no political explanation.
-- Culture: music/musicians, subculture, exhibition, charity — omit unsourced names. Skip the page if empty.
-- Ambassadors: people independently associated with the house or historically its face; not paid campaign-only models. Skip the page if unsourced.
-- Subbrand page when `next.extra_page` is set, or the catalog name is a line (Calvin Klein Jeans → parent + `/jeans`).
-- Owner/stock: use current corporate parent; do not guess ticker.
-- Logo page: describe the mark; do not put a logo `<img>` in content.
-- Images: only if unique and sourced; never duplicate the catalog logo; skip rather than filler. Wikimedia: original `upload.wikimedia.org/.../commons/{hash}/{file}` — never `/thumb/.../800px-`.
-- Similar brands on hub: pick 3–5 from the catalog/queue that are actually close.
+- Confirm each claim against a named source before writing.
+- In the body: no «взято из Википедии»; named-person quotes OK. End of page: `h2` Источники with links when possible.
+- English sources are fine: translate into Russian.
+- Images: reusable license only; Wikimedia original file URL, never `/thumb/.../800px-`.
+- Stores: three H2s — Москва, Санкт-Петербург, Онлайн в России. Monobrand first, else multibrand. Skip the page if nothing is verifiable.
+- Culture H2s: subcultures and music genres. Omit unsourced names.
+- Ambassadors: two groups (unpaid affinity vs paid representation), h3 = names. Skip the page if unsourced.
+- Subbrand page when `next.extra_page` is set.
+- Owner: current parent; stock H2 even if the answer is «не торгуется». Do not guess a ticker.
+- Logo: describe the mark; no logo `<img>` in content.
+- Similar brands on hub: 3–5 from the catalog that are actually close.
 - Never mention the Russia–Ukraine war or related political framing.
-- Never describe how itfits stores logos, templates, slugs, or the admin catalog inside article copy.
-- Before the next brand: use API `next` only. Do not keep a local brand list.
+- Never describe how itfits stores logos, templates, slugs, or the admin catalog.
+- Next brand: API `next` only. Ignore `backfill`. Do not keep a local brand list.
 
 ## HTML allowed in content
 
