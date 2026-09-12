@@ -19,6 +19,8 @@ Save with published: false. Never set published: true.
 
 Articles: Russian, Вы. English sources are OK — translate. Encyclopedias listed in the skill plus official sites. Never tell the reader how the site, template, or admin catalog works. Never write that a logo is “подставляется” or taken from the catalog. Describe the mark’s history only.
 
+Wikimedia photos: use the original file URL without /thumb/ and without 800px. Those thumbs often return HTTP 400 and the image is blank.
+
 Ambassadors: people who were the face of the brand or promoted it by choice, not for money. Skip a page if unsourced.
 
 Do not open a pull request unless you must edit skill files. Summarize which brands and slugs you saved.

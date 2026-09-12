@@ -109,7 +109,7 @@ On the hub, link to other sections in ordinary encyclopedia language («Подр
 
 ## Images
 
-- Add a `<figure>` **only** when the photo is unique to that page and you have a free stable URL. If nothing fits, **no image**.
+- Wikimedia: **never** use `/thumb/` URLs with a pixel width (especially `800px-…`). Wikimedia now returns HTTP 400 for many of those sizes, so the photo is blank on desktop and mobile. Use the **original** file URL: `https://upload.wikimedia.org/wikipedia/commons/{hash}/{file}` (no `/thumb/`, no `800px-`). Or `https://commons.wikimedia.org/wiki/Special:FilePath/Filename.jpg` with **no** `?width=`. If you must use a thumb, only `500px-` has been reliable; prefer the original. After inserting, the site also rewrites broken thumbs, but still save a working original URL.
 - Search order for photos (keep going until a **reusable** license is found: CC BY/SA, public domain, official press still with clear reuse, Wikimedia, or the encyclopedia source itself allows reuse of that file):
   1. Wikimedia Commons API (`list=search` namespace 6) and Wikipedia infobox / `File:` on EN/IT/RU pages.
   2. The encyclopedias listed above (Wikipedia, Britannica, Encyclopedia.com, Citizendium, Scholarpedia, Infoplease, Rubricon, bre.ruwiki.ru, HubPages) — use their images **only** when the page or file states reuse is allowed. Do not hotlink a copyrighted Britannica/Encyclopedia.com still just because it illustrates the topic.

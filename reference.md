@@ -102,7 +102,7 @@ Human queue and drafts: `/admin/blog.php`.
 - Subbrand page when `next.extra_page` is set, or the catalog name is a line (Calvin Klein Jeans → parent + `/jeans`).
 - Owner/stock: use current corporate parent; do not guess ticker.
 - Logo page: describe the mark; do not put a logo `<img>` in content.
-- Images: only if unique and sourced; never duplicate the catalog logo; skip rather than filler.
+- Images: only if unique and sourced; never duplicate the catalog logo; skip rather than filler. Wikimedia: original `upload.wikimedia.org/.../commons/{hash}/{file}` — never `/thumb/.../800px-`.
 - Similar brands on hub: pick 3–5 from the catalog/queue that are actually close.
 - Never mention the Russia–Ukraine war or related political framing.
 - Never describe how itfits stores logos, templates, slugs, or the admin catalog inside article copy.
