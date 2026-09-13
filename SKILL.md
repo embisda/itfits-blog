@@ -32,6 +32,8 @@ Russian, **Вы**, encyclopedic but not stiff. Translate any non-Russian source;
 
 H1 comes from `title` (template). Do **not** put `<h1>` in `content`. Child headings in `content` start at **h2**.
 
+Culture `title` / H1 is always **`{название бренда} в культуре`** — the same formula on every house (`Calvin Klein в культуре`, `Fila в культуре`). Never «Культура Calvin Klein», «Культура дома», or a free paraphrase. The hub TOC label stays «В культуре» (`blogSectionLabels()`). Other child H1s stay the existing templates (`Основатель {бренд}`, `История {бренд}`, …).
+
 ## Do not rewrite old brands (default)
 
 Default work is **new brands only** (API `next`, zero pages).
@@ -57,7 +59,7 @@ Skip the whole page if you cannot fill its required H2s with sourced facts.
 | `index` | `/blog/{brand}` | Hub. `title` / H1 = brand name. 2–4 sentences: чем знамениты + чем занимаются сейчас. Links to children. No extra H2 unless a subbrand line needs «подробнее». |
 | `founder` | `/blog/{brand}/founder` | **h2 = имя основателя** — биография и как начал этот бизнес. Второй **h2 «Другие бренды основателя»** только если у человека реально были другие марки / компании в моде; иначе не ставить. |
 | `history` | `/blog/{brand}/history` | H2 = ключевые вещи и события страницы (изделия, даты, переломы), не «Ранние годы». Пример для Alpha Industries: «Аляска N-3B», «Бомбер MA-1», «Как куртка стала гражданской». |
-| `culture` | `/blog/{brand}/culture` | H2 = названия **субкультур**, которые котируют бренд, и/или **музыкальных жанров**, если бренд котируется у известных исполнителей. Только проверяемые факты. |
+| `culture` | `/blog/{brand}/culture` | `title` / H1 = **`{бренд} в культуре`**. H2 = названия **субкультур**, которые котируют бренд, и/или **музыкальных жанров**, если бренд котируется у известных исполнителей. Только проверяемые факты. |
 | `ambassadors` | `/blog/{brand}/ambassadors` | Две группы (пустую не писать). **h2 «По собственному выбору»** — носили / показывали марку, потому что она им близка, без рекламного контракта как главной причины. **h2 «Представляли бренд за деньги»** — кампании, контракты, paid face of the brand. Внутри группы **h3 = имя**. Нужен хотя бы один sourced человек; иначе страницу пропустить. |
 | `logo` | `/blog/{brand}/logo` | По порядку, пропускать пустые: **h2 «Первый логотип»**, **h2 «Эволюция логотипа»**, **h2 «Текущий логотип»**, **h2 «Другая символика»** (орёл, крокодил, патч, крой — то, по чему дом узнают без слова-марки). Знак **словами**; `<img>` логотипа в контент не ставить. |
 | `owner` | `/blog/{brand}/owner` | **h2 = название текущего владельца** (группа / фонд / частное лицо). **h2 «Бренд на бирже»** — тикер и биржа, если бумага есть; если дом частный — так и написать, не угадывать тикер. Можно уточнить, что на бирже торгуется **родитель**, а не сама марка. |
@@ -91,6 +93,8 @@ Confirm every claim against a named source **before** writing. Preferred: offici
 
 **In the body:** do **not** write that the text is taken from Wikipedia, Britannica, or any encyclopedia («по данным Википедии», «согласно Encyclopedia.com»). Use the fact, not the catalog.
 
+If a topic has **no** sourced fact, **omit it**. Do not narrate the gap. Forbidden (and anything like them): «отдельных программ в этот текст не включаем», «проверяемых данных нет, поэтому не пишем», «энциклопедии об этом молчат», «крупных благотворительных программ не нашли». Silence is enough.
+
 **Quotes are allowed** when a **real named person** said it (журналист, писатель, основатель, дизайнер, представитель бренда): «Как говорил Рене Лакост, …», «В интервью Vogue креативный директор N сказал, что …». Do not invent quotes.
 
 **At the end of the page**, when you used web/print sources, add a sources list (does not count toward the two-screen limit):
@@ -122,7 +126,8 @@ Wikipedia and other encyclopedias **may** appear in this list. Other in-body lin
 - No magazine scans, Instagram, or WWD “courtesy of”.
 - Do not reuse the catalog logo or the same photo on several pages.
 - Hub and logo pages: do not duplicate the brand mark as `<img>` in content.
-- One figure per page unless culture needs two distinct sourced photos. Captions left-aligned.
+- A `<figure>` may sit under **any** H2, including several on one page, **only if** the photo matches that heading **and** the adjacent paragraph (джинсы Marilyn → эти джинсы, не куртка; хип-хоп / Nas → портрет, не витрина магазина). If nothing licensed matches, skip the image. Never pad with a random product, storefront, or “brand-flavored” still.
+- Captions left-aligned.
 - `og_image`: catalog `logo_url` if present, else the page’s unique still (not a GIF). Do not mention this in the article.
 
 ## SEO and fields
