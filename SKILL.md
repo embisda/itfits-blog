@@ -32,7 +32,14 @@ Russian, **Вы**, encyclopedic but not stiff. Translate any non-Russian source;
 
 H1 comes from `title` (template). Do **not** put `<h1>` in `content`. Child headings in `content` start at **h2**.
 
-Culture `title` / H1 is always **`{название бренда} в культуре`** — the same formula on every house (`Calvin Klein в культуре`, `Fila в культуре`). Never «Культура Calvin Klein», «Культура дома», or a free paraphrase. The hub TOC label stays «В культуре» (`blogSectionLabels()`). Other child H1s stay the existing templates (`Основатель {бренд}`, `История {бренд}`, …).
+Fixed H1 formulas (hub TOC labels stay the short names in `blogSectionLabels()`):
+
+- culture: **`{бренд} в культуре`**
+- collaborations: **`Коллаборации с {бренд}`**
+- cinema: **`{бренд} в кинематографе`**
+- campaigns: **`Рекламные кампании {бренд}`**
+
+Never invert or paraphrase these four. Other child H1s stay the existing templates (`Основатель {бренд}`, `История {бренд}`, …).
 
 ## Do not rewrite old brands (default)
 
@@ -46,7 +53,7 @@ Rewrite only when the user **explicitly asks** (see «How the user asks for a re
 
 The hub is **not** a retelling of founder/history/culture.
 
-Hub text (2–4 sentences) = **чем бренд знаменит** и **чем занимается сейчас**. Then ordinary encyclopedia links («Подробнее об истории», «об амбассадорах»). Details live on child pages.
+Hub text (2–4 sentences) = **чем бренд знаменит** и **чем занимается сейчас**. Then ordinary encyclopedia links («Подробнее об истории», «о коллаборациях», «в кинематографе»). Details live on child pages.
 
 The visible **Содержание** on `/blog/{brand}` is built from child pages automatically (section title + `excerpt`). Do not duplicate that list inside hub `content`.
 
@@ -61,6 +68,9 @@ Skip the whole page if you cannot fill its required H2s with sourced facts.
 | `history` | `/blog/{brand}/history` | H2 = ключевые вещи и события страницы (изделия, даты, переломы), не «Ранние годы». Пример для Alpha Industries: «Аляска N-3B», «Бомбер MA-1», «Как куртка стала гражданской». |
 | `culture` | `/blog/{brand}/culture` | `title` / H1 = **`{бренд} в культуре`**. H2 = названия **субкультур**, которые котируют бренд, и/или **музыкальных жанров**, если бренд котируется у известных исполнителей. Только проверяемые факты. |
 | `ambassadors` | `/blog/{brand}/ambassadors` | Две группы (пустую не писать). **h2 «По собственному выбору»** — носили / показывали марку, потому что она им близка, без рекламного контракта как главной причины. **h2 «Представляли бренд за деньги»** — кампании, контракты, paid face of the brand. Внутри группы **h3 = имя**. Нужен хотя бы один sourced человек; иначе страницу пропустить. |
+| `collaborations` | `/blog/{brand}/collaborations` | `title` / H1 = **`Коллаборации с {бренд}`**. **Пробовать всегда.** H2 = имена коллабораций / партнёров (не «Известные коллаборации»). Для каждой: что сделали вместе, что из этого вышло, это разовая акция или линия/партнёрство продолжается. Нет ни одной проверяемой коллаборации — страницу пропустить. |
+| `cinema` | `/blog/{brand}/cinema` | `title` / H1 = **`{бренд} в кинематографе`**. **Пробовать всегда.** Два h2, пустой не ставить и не объяснять отсутствие: **«Документальные фильмы»** — фильмы *про* бренд; **«Игровое кино»** — байопик про дом/основателя или игровое кино, где марке уделено много экранного времени (не камео на две секунды). У каждого фильма по возможности ссылки на карточку на https://www.kinopoisk.ru/ и https://www.imdb.com/ (конкретный title, не главная сайта). Нет ни одного проверяемого фильма — страницу пропустить. |
+| `campaigns` | `/blog/{brand}/campaigns` | `title` / H1 = **`Рекламные кампании {бренд}`**. **Пробовать всегда.** H2 = названия значимых кампаний (скандальные, запоминающиеся, вошедшие в историю дома), не «Реклама 1990-х». Нет ни одной проверяемой кампании — страницу пропустить. |
 | `logo` | `/blog/{brand}/logo` | По порядку, пропускать пустые: **h2 «Первый логотип»**, **h2 «Эволюция логотипа»**, **h2 «Текущий логотип»**, **h2 «Другая символика»** (орёл, крокодил, патч, крой — то, по чему дом узнают без слова-марки). Знак **словами**; `<img>` логотипа в контент не ставить. |
 | `owner` | `/blog/{brand}/owner` | **h2 = название текущего владельца** (группа / фонд / частное лицо). **h2 «Бренд на бирже»** — тикер и биржа, если бумага есть; если дом частный — так и написать, не угадывать тикер. Можно уточнить, что на бирже торгуется **родитель**, а не сама марка. |
 | `stores` | `/blog/{brand}/stores` | Три обязательных h2, даже если блок короткий: **«Москва»**, **«Санкт-Петербург»**, **«Онлайн в России»**. Сначала монобренды (собственный магазин / официальный сайт марки). Если монобренда нет — мультибренды, где марка реально продаётся. Только проверяемые точки. Закрыто: статус одной фразой, без политики. Нет ни одной проверяемой точки ни в одном городе и онлайн — страницу пропустить. |
@@ -106,7 +116,7 @@ If a topic has **no** sourced fact, **omit it**. Do not narrate the gap. Forbidd
 </ul>
 ```
 
-Wikipedia and other encyclopedias **may** appear in this list. Other in-body links: internal `/blog/...` and store URLs on `stores`.
+Wikipedia and other encyclopedias **may** appear in this list. Other in-body links: internal `/blog/...`; store URLs on `stores`; Kinopoisk and IMDb **title** URLs on `cinema`.
 
 ## Forbidden in copy
 
@@ -126,7 +136,7 @@ Wikipedia and other encyclopedias **may** appear in this list. Other in-body lin
 - No magazine scans, Instagram, or WWD “courtesy of”.
 - Do not reuse the catalog logo or the same photo on several pages.
 - Hub and logo pages: do not duplicate the brand mark as `<img>` in content.
-- A `<figure>` may sit under **any** H2, including several on one page, **only if** the photo matches that heading **and** the adjacent paragraph (джинсы Marilyn → эти джинсы, не куртка; хип-хоп / Nas → портрет, не витрина магазина). If nothing licensed matches, skip the image. Never pad with a random product, storefront, or “brand-flavored” still.
+- Try a `<figure>` under **each H2 and H3** when a reusable image exists and it matches that heading **and** the adjacent paragraph (коллаборация A × B → эта капсула; документальный фильм → кадр/постер с разрешённой лицензией; кампания CK One → эта кампания, не витрина). Several figures on one page are OK. If nothing licensed matches, skip. Never pad with a random product, storefront, or “brand-flavored” still.
 - Captions left-aligned.
 - `og_image`: catalog `logo_url` if present, else the page’s unique still (not a GIF). Do not mention this in the article.
 
@@ -177,7 +187,7 @@ Timeout, 5xx, 401, empty body, or non-JSON = **failure**. Failure ≠ “brand h
 5. `GET …/api/blog.php?brand={next.slug}&token=`
 6. If that call fails: **stop**.
 7. If `pages` is non-empty: **stop** (do not POST, do not fill missing slugs).
-8. If `pages` is empty: research and draft that one brand (plus `next.extra_page` if present).
+8. If `pages` is empty: research and draft that one brand (plus `next.extra_page` if present), including collaborations, cinema, and campaigns when sources exist.
 9. Immediately before POST, repeat the brand GET. If it fails or `pages` is non-empty: **stop**.
 10. `POST` with `published: false` and `brand` as the human catalog name (`Ben Sherman`, never `bensherman`). Never send `overwrite: true`.
 11. Summarize brand + slugs saved. If POST returns 409, report it and **stop**.

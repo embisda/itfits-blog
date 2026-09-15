@@ -17,7 +17,7 @@ Write only next (one new catalog brand, full set of pages that sources support).
 
 Save with published: false. Never set published: true.
 
-Follow the Writing section of the skill: max two screens per page; hub = чем знамениты и чем занимаются сейчас; required H2 outlines; ambassadors unpaid vs paid; stores H2 Москва / Санкт-Петербург / Онлайн в России; hub faq = Содержание (названия разделов + excerpt); end of article Источники with links; do not say the text is from Wikipedia; named-person quotes OK.
+Follow the Writing section of the skill: max two screens per page; hub = чем знамениты и чем занимаются сейчас; required H2 outlines; always try collaborations, cinema (docs + fiction, Kinopoisk/IMDb links), and ad campaigns; ambassadors unpaid vs paid; stores H2 Москва / Санкт-Петербург / Онлайн в России; hub faq = Содержание (названия разделов + excerpt); figure under each H2/H3 only when it matches; end of article Источники with links; do not say the text is from Wikipedia; named-person quotes OK.
 
 Articles: Russian, Вы. English sources are OK — translate. Never tell the reader how the site, template, or admin catalog works.
 

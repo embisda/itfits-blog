@@ -93,10 +93,13 @@ Human queue and drafts: `/admin/blog.php`.
 - Confirm each claim against a named source before writing.
 - In the body: no «взято из Википедии»; named-person quotes OK. End of page: `h2` Источники with links when possible.
 - English sources are fine: translate into Russian.
-- Images: reusable license only; Wikimedia original file URL, never `/thumb/.../800px-`. Put a figure only when it matches the heading and the paragraph; skip rather than pad.
+- Images: reusable license only; Wikimedia original file URL, never `/thumb/.../800px-`. Try a figure under each H2/H3 when it matches the heading and the paragraph; skip rather than pad.
 - Stores: three H2s — Москва, Санкт-Петербург, Онлайн в России. Monobrand first, else multibrand. Skip the page if nothing is verifiable.
 - Culture H2s: subcultures and music genres. Omit unsourced names.
 - Ambassadors: two groups (unpaid affinity vs paid representation), h3 = names. Skip the page if unsourced.
+- Collaborations: always attempt; H2 = partner/capsule names; one-off vs ongoing. Skip if unsourced.
+- Cinema: always attempt; H2 «Документальные фильмы» and «Игровое кино»; Kinopoisk + IMDb title links when they exist. Skip if no films.
+- Campaigns: always attempt; H2 = campaign names (memorable / scandalous / historic). Skip if unsourced.
 - Subbrand page when `next.extra_page` is set.
 - Owner: current parent; stock H2 even if the answer is «не торгуется». Do not guess a ticker.
 - Logo: describe the mark; no logo `<img>` in content.
