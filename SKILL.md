@@ -30,6 +30,8 @@ Each page: **no more than two screens of body text** on a laptop (about 3 500�
 
 Russian, **Вы**, encyclopedic but not stiff. Translate any non-Russian source; do not leave English body copy.
 
+Do **not** end a thought with the contrast tic **«…, а не …»**. It shows up too often and reads like a template. State the fact, then move on. A single contrast in a long article is enough; the rest should be direct sentences, a new detail, or a different construction («иначе», «вместо этого», split into two phrases).
+
 H1 comes from `title` (template). Do **not** put `<h1>` in `content`. Child headings in `content` start at **h2**.
 
 Fixed H1 formulas (hub TOC labels stay the short names in `blogSectionLabels()`):
