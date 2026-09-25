@@ -54,7 +54,7 @@ New brand only. If the brand already exists, API returns **409** unless `"overwr
       "title": "Lacoste",
       "excerpt": "Чем знамениты и чем занимаются сейчас — одно предложение.",
       "seo_title": "Lacoste — бренд и крокодил | itfits",
-      "seo_description": "140–160 символов про эту страницу.",
+      "seo_description": "150–180 символов про эту страницу, не длиннее 200.",
       "og_image": "https://…",
       "related_brands": ["fredperry", "ralphlauren", "calvinklein"],
       "faq": [

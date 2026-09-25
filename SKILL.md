@@ -144,7 +144,7 @@ Wikipedia and other encyclopedias **may** appear in this list. Other in-body lin
 
 ## SEO and fields
 
-- `seo_title` ~70 characters, `seo_description` 140–160, one H1 from `title`.
+- `seo_title` 50–60 characters, `seo_description` 150–180 and never over 200, one H1 from `title`.
 - `excerpt` on **every child page**: one sentence. This is the summary in hub **Содержание**.
 - Hub `faq`: same as Содержание. One item per child page you actually wrote. `question` = section title (`Основатель`, `История`, `В культуре`, … — `blogSectionLabels()`). `answer` = that page’s `excerpt`. Do not invent extra Q&A on the hub. Do not duplicate Contents in hub HTML.
 - Child-page `faq`: optional 3–6 items from **that** page’s body; skip if you cannot.
