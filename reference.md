@@ -29,7 +29,7 @@ GET /api/blog.php?next=1&token=
 }
 ```
 
-`next` is the next catalog brand with **zero** pages. `next` is `null` when the catalog has no unwritten brands.
+`next` is the next catalog brand with **zero** pages and articles turned on (`articles_enabled`). `next` is `null` when no such brand remains. A queued row with `articles_enabled: false` is waiting for the admin; do not write it and do not call the catalog empty while those rows exist. New catalog brands start with articles off.
 
 **Ignore `backfill`.** Automation never completes missing sections on brands that already have pages. Rewrite only when the user asks (see SKILL.md «How the user asks for a rewrite»).
 
@@ -111,5 +111,7 @@ Human queue and drafts: `/admin/blog.php`.
 ## HTML allowed in content
 
 `p, br, h2, h3, h4, ul, ol, li, strong, b, em, i, a, img, blockquote, figure, figcaption`
+
+Every shop, official site, and other web address in `content` is `<a href="https://...">`. Do not leave a bare domain such as `mastrum.com`.
 
 One H1 comes from `title` in the template — do not put `<h1>` in content. Hub H1 is the brand name; hub `title` can match the brand name.

@@ -120,6 +120,8 @@ If a topic has **no** sourced fact, **omit it**. Do not narrate the gap. Forbidd
 
 Wikipedia and other encyclopedias **may** appear in this list. Other in-body links: internal `/blog/...`; store URLs on `stores`; Kinopoisk and IMDb **title** URLs on `cinema`.
 
+**Every web address is a link.** In the body and in «Источники», a shop, an official site, or any other web address is an `<a href="https://...">`. A bare domain (`mastrum.com`, `anothershop.net`, `lonsdale.ru`) is not a link. Put the scheme in `href`. Internal links stay `/blog/...`.
+
 ## Forbidden in copy
 
 - `<script>`, JSON-LD, OG, breadcrumbs in `content`.
@@ -175,6 +177,8 @@ Do **not** keep a hardcoded brand list.
 - Catalog = API `catalog` / https://www.itfits.vakhromeev.com/admin/brands.php
 - What to write = API `next` only (one house with zero pages), unless the user asked for a rewrite.
 - Ignore `backfill`. Map catalog line names to a parent house.
+- A catalog brand can have articles turned off (`blog_articles` / queue `articles_enabled: false`). New brands start off. `next` skips them. Do not POST or PUT a **new** page for that house. If the user names it, say the flag is off on `/admin/blog.php` and stop. Editing a page that already exists is allowed only when they asked to change that page.
+- If `next` is null, read `queue` before saying the catalog is empty. Rows with `status: queued` and `articles_enabled: false` are waiting for the admin.
 
 ## Run protocol (mandatory)
 
