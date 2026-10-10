@@ -102,7 +102,7 @@ Human queue and drafts: `/admin/blog.php`.
 - Campaigns: always attempt; H2 = campaign names (memorable / scandalous / historic). Skip if unsourced.
 - Subbrand page when `next.extra_page` is set.
 - Owner: current parent; stock H2 even if the answer is «не торгуется». Do not guess a ticker.
-- Logo: describe the mark; no logo `<img>` in content.
+- Logo: the whole visual code (mark, type, colours, emblems, patterns, garment details), with as many licensed figures as you can find. Do not repeat the catalog logo file the template already shows. Do not use a generic stand-in.
 - Similar brands on hub: 3–5 from the catalog that are actually close.
 - Never mention the Russia–Ukraine war or related political framing.
 - Never describe how itfits stores logos, templates, slugs, or the admin catalog.
