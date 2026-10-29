@@ -30,6 +30,14 @@ Each page: **no more than two screens of body text** on a laptop (about 3 500�
 
 Russian, **Вы**, encyclopedic but not stiff. Translate any non-Russian source; do not leave English body copy.
 
+Slang and anglicisms are allowed when they sound natural in Russian — check yourself. Do **not** invent calques. Example: not «селебритное лицо»; in Russian it is «селебрити» or «селебы / селеба» (from *celebrity*).
+
+Brand names and band/group names are dangerous to decline. Prefer the **nominative** form always («группа „Обе две“», not «из „Обе двух“»). Same for house names: keep the catalog spelling (`SHU`, not `SH’U`; `Pepe Jeans`, not a shortened `Pepe`).
+
+House jargon for store formats (Stüssy **Chapter**, corner, flagship): do not drop an English label into Russian without a gloss. Explain once in parentheses or a short sentence if the fact is useful («собственные монобрендовые флагманы дома официально называются Chapter»), then you may reuse the word.
+
+When a quote or recollection comes from an interview or article, name the medium with a preposition: «вспоминал он **в интервью** Empire Ave», not «вспоминал он Empire Ave».
+
 Do **not** end a thought with the contrast tic **«…, а не …»**. It shows up too often and reads like a template. State the fact, then move on. A single contrast in a long article is enough; the rest should be direct sentences, a new detail, or a different construction («иначе», «вместо этого», split into two phrases).
 
 H1 comes from `title` (template). Do **not** put `<h1>` in `content`. Child headings in `content` start at **h2**.
@@ -71,10 +79,10 @@ Skip the whole page if you cannot fill its required H2s with sourced facts.
 | `culture` | `/blog/{brand}/culture` | `title` / H1 = **`{бренд} в культуре`**. H2 = названия **субкультур**, которые котируют бренд, и/или **музыкальных жанров**, если бренд котируется у известных исполнителей. Только проверяемые факты. |
 | `ambassadors` | `/blog/{brand}/ambassadors` | Две группы (пустую не писать). **h2 «По собственному выбору»** — носили / показывали марку, потому что она им близка, без рекламного контракта как главной причины. **h2 «Представляли бренд за деньги»** — кампании, контракты, paid face of the brand. Внутри группы **h3 = имя**. Нужен хотя бы один sourced человек; иначе страницу пропустить. |
 | `collaborations` | `/blog/{brand}/collaborations` | `title` / H1 = **`Коллаборации с {бренд}`**. **Пробовать всегда.** H2 = имена коллабораций / партнёров (не «Известные коллаборации»). Для каждой: что сделали вместе, что из этого вышло, это разовая акция или линия/партнёрство продолжается. Нет ни одной проверяемой коллаборации — страницу пропустить. |
-| `cinema` | `/blog/{brand}/cinema` | `title` / H1 = **`{бренд} в кинематографе`**. **Пробовать всегда.** Два h2, пустой не ставить и не объяснять отсутствие: **«Документальные фильмы»** — фильмы *про* бренд; **«Игровое кино»** — байопик про дом/основателя или игровое кино, где марке уделено много экранного времени (не камео на две секунды). У каждого фильма по возможности ссылки на карточку на https://www.kinopoisk.ru/ и https://www.imdb.com/ (конкретный title, не главная сайта). Нет ни одного проверяемого фильма — страницу пропустить. |
+| `cinema` | `/blog/{brand}/cinema` | `title` / H1 = **`{бренд} в кинематографе`**. **Пробовать всегда.** Два h2, пустой не ставить и не объяснять отсутствие: **«Документальные фильмы»** — фильмы *про* бренд; **«Игровое кино»** — байопик про дом/основателя или игровое кино, где марке уделено много экранного времени (не камео на две секунды). У **каждого** названного фильма — ссылки на карточку на https://www.kinopoisk.ru/ и https://www.imdb.com/ (конкретный title, не главная сайта), не только у «главного» фильма страницы. Нет ни одного проверяемого фильма — страницу пропустить. |
 | `campaigns` | `/blog/{brand}/campaigns` | `title` / H1 = **`Рекламные кампании {бренд}`**. **Пробовать всегда.** H2 = названия значимых кампаний (скандальные, запоминающиеся, вошедшие в историю дома), не «Реклама 1990-х». Нет ни одной проверяемой кампании — страницу пропустить. |
 | `logo` | `/blog/{brand}/logo` | Страница про **всю узнаваемую символику** дома. Шаблон над текстом уже показывает один знак из каталога: этот же файл в `content` не повторять и в тексте не объяснять, откуда он берётся. Дальше по порядку, пустые блоки не ставить: **h2 «Первый логотип»**, **h2 «Эволюция логотипа»**, **h2 «Текущий логотип»**, затем отдельные h2 на всё, что дом узнают без чтения бирки и что есть в источниках: **шрифт**, **цвета**, **эмблемы** (орёл, крокодил, компас, венок, шеврон), **паттерны и принты**, **узнаваемые детали одежды** (патч, крой, молния, пуговицы, лампасы, воротник, подклад, бирка, линзы). Другой устойчивый визуальный код — своим h2. Под каждым таким блоком короткий факт и **как можно больше `<figure>`**: исторические знаки, образец букв, цвет на изделии, паттерн, крупный план детали. Несколько фигур под одним h2 — норма, если каждая показывает свою вещь. Чужой рисунок не подставлять: стоковая роза ветров не заменяет шеврон дома. Нет лицензионного снимка — оставить фразу без картинки. Нет ни одного проверяемого визуального кода — страницу пропустить. |
-| `owner` | `/blog/{brand}/owner` | **h2 = название текущего владельца** (группа / фонд / частное лицо). **h2 «Бренд на бирже»** — тикер и биржа, если бумага есть; если дом частный — так и написать, не угадывать тикер. Можно уточнить, что на бирже торгуется **родитель**, а не сама марка. |
+| `owner` | `/blog/{brand}/owner` | Простым языком: **кому сейчас принадлежит фирма** и **можно ли купить её бумаги на бирже** (ценителю бренда иногда важно стать частью бизнеса через акции). **h2 = название текущего владельца** (группа / фонд / частное лицо). **h2 «Бренд на бирже»** — тикер и биржа, если бумага есть; если дом частный — так и написать, не угадывать тикер. Можно уточнить, что на бирже торгуется **родитель**, а не сама марка. Не писать канцелярит: уставный капитал, основной / дополнительные коды ОКВЭД, КПП, форму собственности, категорию «микробизнес». ИНН и ОГРН (ОГРНИП) допустимы, не обязательны. |
 | `stores` | `/blog/{brand}/stores` | Три обязательных h2, даже если блок короткий: **«Москва»**, **«Санкт-Петербург»**, **«Онлайн в России»**. Сначала монобренды (собственный магазин / официальный сайт марки). Если монобренда нет — мультибренды, где марка реально продаётся. Только проверяемые точки. Закрыто: статус одной фразой, без политики. Нет ни одной проверяемой точки ни в одном городе и онлайн — страницу пропустить. |
 | *(линия)* | `/blog/{brand}/{slug}` | Только если каталог/API дал линию. История линии, связь с домом, типичные продукты. Заголовок как «Calvin Klein Jeans». H2 по тому же принципу, что у history. |
 
@@ -87,7 +95,7 @@ Wardrobe name is not always the house. Write the **parent**, plus one extra page
 | Calvin Klein Jeans | Calvin Klein (`calvinklein`) | `jeans` |
 | Marciano By Guess | Guess (`guess`) | `marciano` |
 
-Same later: Polo Ralph Lauren → Ralph Lauren + `polo`. Infer parent from the name. Do not invent a second house.
+Same later: Polo Ralph Lauren → Ralph Lauren + `polo`. Infer parent **only** from the explicit map / known line patterns (`by …`, `Polo …`). Do **not** treat every catalog name ending in «Jeans» as a line: **Pepe Jeans** is the house itself (`pepejeans`), not a parent «Pepe» plus a `jeans` page. Do not invent a second house. Use the **full** catalog trade name in `brand` / titles / H1.
 
 ## Sources
 
@@ -106,6 +114,8 @@ Confirm every claim against a named source **before** writing. Preferred: offici
 **In the body:** do **not** write that the text is taken from Wikipedia, Britannica, or any encyclopedia («по данным Википедии», «согласно Encyclopedia.com»). Use the fact, not the catalog.
 
 If a topic has **no** sourced fact, **omit it**. Do not narrate the gap. Forbidden (and anything like them): «отдельных программ в этот текст не включаем», «проверяемых данных нет, поэтому не пишем», «энциклопедии об этом молчат», «крупных благотворительных программ не нашли». Silence is enough.
+
+When it *is* useful to say something is missing (адрес магазина, архивный знак), write plainly «не нашел», «найти не смог» — **without** the research kitchen («в открытых лицензиях», «в справочниках универмагов на дату статьи», «по Wikimedia»). The reader does not need your search method.
 
 **Quotes are allowed** when a **real named person** said it (журналист, писатель, основатель, дизайнер, представитель бренда): «Как говорил Рене Лакост, …», «В интервью Vogue креативный директор N сказал, что …». Do not invent quotes.
 
@@ -127,6 +137,7 @@ Wikipedia and other encyclopedias **may** appear in this list. Other in-body lin
 - `<script>`, JSON-LD, OG, breadcrumbs in `content`.
 - Russia–Ukraine war, invasion, «СВО», sanctions, political framing. Closed shops: status only.
 - How itfits, templates, the admin catalog, slugs, or `published` work. Forbidden (and anything like them): «логотип берётся из админского каталога», «картинку в HTML не ставим — шаблон уже показывает».
+- Temporary or failed `brand_slug` values (`brand`, `brand20261012…`). Before POST/PUT, the slug must match the house name (`nike`, `pepejeans`). If a page landed under a stub slug, fix or move it — do not leave `brand/culture` for Nike.
 
 ## Images
 
@@ -142,6 +153,7 @@ Wikipedia and other encyclopedias **may** appear in this list. Other in-body lin
 - Hub: do not put the brand mark in content as `<img>`.
 - Logo page: fill the article with licensed images of **this house’s** marks, lettering, colours, patterns, and garment details. A shop photo counts only when the mark or the lettering is readable in the frame. A generic diagram is not a stand-in. If nothing licensed matches, keep the sentence and skip the figure.
 - Try a `<figure>` under **each H2 and H3** when a reusable image exists and it matches that heading **and** the adjacent paragraph (коллаборация A × B → эта капсула; документальный фильм → кадр/постер с разрешённой лицензией; кампания CK One → эта кампания, не витрина). Several figures on one page are OK; on `logo` they are the point of the page. If nothing licensed matches, skip. Never pad with a random product, an unmarked storefront, or a “brand-flavored” still.
+- The picture above a caption must **show what the caption names**. A rock-concert still is wrong under a stock-exchange caption; a painting of a castle is wrong under «родной квартал фабрики» unless the castle itself is the subject. Allowed place photos: the founder’s house or street, the actual factory/HQ, a real store of the brand, or the exchange building when the caption is about that ticker. Atmospheric stand-ins that only loosely share a placename — skip.
 - Captions left-aligned.
 - `og_image`: catalog `logo_url` if present, else the page’s unique still (not a GIF). Do not mention this in the article.
 
