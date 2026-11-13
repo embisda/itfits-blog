@@ -30,11 +30,19 @@ Each page: **no more than two screens of body text** on a laptop (about 3 500�
 
 Russian, **Вы**, encyclopedic but not stiff. Translate any non-Russian source; do not leave English body copy.
 
-Slang and anglicisms are allowed when they sound natural in Russian — check yourself. Do **not** invent calques. Example: not «селебритное лицо»; in Russian it is «селебрити» or «селебы / селеба» (from *celebrity*).
+Use slang and established anglicisms only when they are natural in Russian and there is no equally clear Russian equivalent. For ordinary words with a clear equivalent, choose Russian. Do **not** invent calques. Example: not «селебритное лицо»; in Russian it is «селебрити» or «селебы / селеба» (from *celebrity*).
+
+Write people's names in Russian; the original spelling in parentheses is optional («Аарон Тальман (Aaron Thalmann)»). Write place names in Russian and give the original spelling in parentheses («Дарблей-стрит (D’Arblay Street)»).
+
+Always translate ordinary English words and phrases when Russian preserves the meaning. Avoid English wording for things that have a clear Russian equivalent: *track tops* — «олимпийка», *tee* — «футболка», *crest* — «герб» or «эмблема», *navy* — «тёмно-синий». Keep English only when it is a proper name, established term, or meaningful quote.
+
+Explain specialized slang and subculture terms that may be unfamiliar outside their scene. Give a clear definition at first use; when useful, explain the term's origin too. For example: «Terrace casuals — субкультура футбольных фанатов и околофутбольного движения, зародившаяся в Великобритании в конце 1970-х — начале 1980-х годов. Название происходит от слова *terrace* — стоячие трибуны на футбольных стадионах». Translate a term according to its context: «кагула» (от англ. и фр. *cagoule*) означает лёгкую непромокаемую ветровку-анорак с капюшоном или куртку/толстовку со встроенной в воротник балаклавой.
+
+If an established English phrase or a quote must remain in English because its wording matters in context, always put the Russian translation in parentheses immediately after it: *small world tour* («маленькое мировое турне»).
 
 Brand names and band/group names are dangerous to decline. Prefer the **nominative** form always («группа „Обе две“», not «из „Обе двух“»). Same for house names: keep the catalog spelling (`SHU`, not `SH’U`; `Pepe Jeans`, not a shortened `Pepe`).
 
-House jargon for store formats (Stüssy **Chapter**, corner, flagship): do not drop an English label into Russian without a gloss. Explain once in parentheses or a short sentence if the fact is useful («собственные монобрендовые флагманы дома официально называются Chapter»), then you may reuse the word.
+For house jargon and store formats (Stüssy **Chapter**, corner, flagship), give the Russian meaning on first use; retain the English label in parentheses only when the original term is useful («флагманские монобрендовые магазины дома, официально называемые Chapter»). After that, use the Russian wording where it reads naturally.
 
 When a quote or recollection comes from an interview or article, name the medium with a preposition: «вспоминал он **в интервью** Empire Ave», not «вспоминал он Empire Ave».
 
