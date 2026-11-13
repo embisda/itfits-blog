@@ -173,6 +173,14 @@ Wikipedia and other encyclopedias **may** appear in this list. Other in-body lin
 - Child-page `faq`: optional 3–6 items from **that** page’s body; skip if you cannot.
 - `related_brands`: only on `index`, 3–5 close houses from the catalog.
 
+## Final checklist
+
+Before saving an article:
+- Check that each caption describes the image itself; identify people, garments, and context only when confirmed.
+- Translate ordinary English terms and briefly explain specialized jargon at first mention; keep the English original only when useful.
+- For collaborations, distinguish a co-created product from a campaign, sponsorship, or incidental appearance, and state only what sources support.
+- Verify factual claims against named sources and list them under «Источники».
+
 ---
 
 # Automation
